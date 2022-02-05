@@ -1,19 +1,11 @@
-const promise1=new Promise((resolve,reject)=>{
-    fetch("https://jsonplaceholder.typicode.com/users")
-        .then(res=> res.json())
-        .then(data=> {
-            console.log(data)
-            resolve(data)
-        })
-});
+var button=document.getElementById("myBtn");
+button.addEventListener("click",buttonclick);
 
+function buttonclick(){
+    
+    fetch('https://dog.ceo/api/breeds/image/random')
+        .then(response => response.json())
+        .then(data => document.getElementById("myImg").src = data.message);
+        // .catch(err => console.error("error"));
+}
 
-const promise2=new Promise((resolve,reject)=>{
-    fetch("https://jsonplaceholder.typicode.com/posts")
-        .then(res=> res.json())
-        .then(data=> {
-            resolve(data)
-        })
-});
-
-Promise.all([promise1, promise2]).then(result=> console.log(result)).catch(err=>console.error("error"));
